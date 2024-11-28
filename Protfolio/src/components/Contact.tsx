@@ -25,7 +25,7 @@ const Contact = () => {
     setStatus({ loading: true, success: false, error: '' });
 
     try {
-      const response = await fetch('http://localhost:3001/api/contact', {
+      const response = await fetch('https://portfolio-n54y.vercel.app/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
