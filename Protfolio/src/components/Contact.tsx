@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Loader } from 'lucide-react';
+import axios from 'axios';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -25,26 +26,27 @@ const Contact = () => {
     setStatus({ loading: true, success: false, error: '' });
 
     try {
-      const response = await fetch('https://portfolio-server-three-alpha.vercel.app/api/contact', {
-        method: 'POST',
+      const response = await axios.post('https://portfolio-server-three-alpha.vercel.app/api/contact', formData, {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
       });
-      console.log(response)
 
-      if (!response.ok) {
+      console.log('Response:', response);
+
+      if (response.status !== 200) {
         throw new Error('Failed to send message');
       }
 
       setStatus({ loading: false, success: true, error: '' });
       setFormData({ name: '', email: '', message: '' });
-    } catch (error) {
+    } catch (error: any) {
+      console.error('Error:', error);
+
       setStatus({
         loading: false,
         success: false,
-        error: 'Failed to send message. Please try again.'
+        error: error.response?.data?.message || 'Failed to send message. Please try again.',
       });
     }
   };
@@ -67,7 +69,7 @@ const Contact = () => {
               </div>
               <div className="flex items-center gap-4 text-gray-300">
                 <MapPin className="text-yellow-400" size={24} />
-                <span>Rajpura,punjab</span>
+                <span>Rajpura, Punjab</span>
               </div>
             </div>
           </div>
