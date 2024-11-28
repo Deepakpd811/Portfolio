@@ -7,7 +7,12 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors({ origin: 'https://portfolio-ruddy-nu-68.vercel.app' }));
+app.use(cors({
+  origin: 'https://portfolio-ruddy-nu-68.vercel.app', // No trailing slash
+  methods: ['GET', 'POST', 'OPTIONS'], // Allow these methods
+  allowedHeaders: ['Content-Type'], // Explicitly allow content headers
+}));
+
 // app.use(cors())
 app.use(express.json());
 
