@@ -25,7 +25,7 @@ const transporter = nodemailer.createTransport({
 });
 
 app.get('/',(req,res)=>{
-  res.send("hello");
+  res.send("hello"+process.env.PORT);
 })
 
 app.get('/vercel',(req,res)=>{
