@@ -22,6 +22,10 @@ app.get('/',(req,res)=>{
   res.send("hello");
 })
 
+app.get('/vercel',(req,res)=>{
+  res.send("hello vercel");
+})
+
 app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;
 
