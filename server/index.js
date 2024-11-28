@@ -7,7 +7,7 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+app.use(cors({ origin: 'https://portfolio-ruddy-nu-68.vercel.app' }));
 app.use(express.json());
 
 const transporter = nodemailer.createTransport({

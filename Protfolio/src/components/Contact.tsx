@@ -25,13 +25,14 @@ const Contact = () => {
     setStatus({ loading: true, success: false, error: '' });
 
     try {
-      const response = await fetch('https://portfolio-n54y.vercel.app/api/contact', {
+      const response = await fetch('https://portfolio-server-three-alpha.vercel.app/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
       });
+      console.log(response)
 
       if (!response.ok) {
         throw new Error('Failed to send message');
